@@ -1,0 +1,88 @@
+// Responsive Sass Flexbox Grid
+
+body {
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.container {
+  background: #ccc;
+  max-width: 1440px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+div[class^="column-"] {
+  box-sizing: border-box;
+  //border: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  text-align: center;
+  padding: 1em 0;
+
+  &:last-child {
+    //border-right: 1px solid #fff;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// the Grid
+
+$columns: 12;
+@for $i from 1 through $columns {
+  .column-#{$i} {
+     flex: 0 0 100% / $columns * $i;
+   }
+  .column-offset-#{$i} {
+    margin-left: 100% / $columns * $i;
+  }
+}
+
+@mixin width($width) {
+
+  @if $width == xxxlg {
+    @media (min-width: 105rem) { @content ; }  // 1680px
+  }
+  @else if $width == xxlg {
+    @media (min-width: 90rem) { @content ; }   // 1440px
+  }
+  @else if $width == xlg {
+    @media (min-width: 75rem) { @content ; }   // 1200px
+  }
+  @else if $width == lg {
+    @media (min-width: 64rem)  { @content ; }  // 1024px
+  }
+  @else if $width == md {
+    @media (min-width: 40rem) { @content; }    // 640px
+  }
+  @else if $width == sm {
+    @media (max-width: 30rem)  { @content ; }  // 480px
+  }
+}
+
+@mixin height($height) {
+
+  @if $height == xlg-h {
+    @media (min-height: 105rem) { @content ; }  // 1680px
+  }
+  @else if $height == lg-h {
+    @media (min-height: 90rem) { @content ; }   // 1440px
+  }
+  @else if $height == md-h {
+    @media (min-height: 75rem) { @content ; }  // 1200px
+  }
+  @else if $height == sm-h {
+    @media (min-height: 64rem)  { @content ; }  // 1024px
+  }
+  @else if $height == md-h {
+    @media (min-height: 40rem) { @content; }  // 640px
+  }
+  @else if $height == sm-h {
+    @media (max-height: 30rem)  { @content ; }  // 480px
+  }
+}
+
